@@ -1,0 +1,8 @@
+{% extends "base.html" %}
+{% block content %}
+	<h2>{{ sku_code }}</h2>
+	<h3>{{ sku_code }}</h3>
+	<img src="https://s.zkcdn.net/Advertisers/310c1c3677454c9db93befc2222987ac.png">
+	<img src="{{ url_for('static', filename='/img/mint/'+sku_code) }}">
+
+{% endblock %}

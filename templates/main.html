@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="form-group">
+<form action="" method="post" role="form">
+	{{ form.csrf }}
+	<label for="name">SKU:</label>
+	<input type="text" class="form-control" id="sku" name="sku" placeholder="SKU kods">
+	<button type="submit" class="btn btn-success">Meklēt</button>
+</form>
+</div>
+
+<br>
+	{% with messages = get_flashed_messages(with_categories=true) %}
+	{% if messages %}
+		{% for message in messages %}
+			{% if "Ok!" in message[1]: %}
+				<div class="alert alert-info">
+                        	<strong>Statuss:</strong> {{ message[1] }}
+                        	</div>
+			{% endif %}
+			{% if "Ok!" not in message[1]: %}
+				<div class="alert alert-warning">
+				{{ message[1] }}
+				</div>
+			{% endif %}
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+</div>
+{% if sku_len > 1 %}
+<div class="container">
+	<table class="table">
+	<tr><th>SKU</th><th>Nosaukums</th></tr>
+	{% for item in sku_list %}
+		<tr><td>
+		<a href={{ url_for('print_label',sku_code=item['SKU']) }}>{{ item['SKU'] }}</a></td><td>{{ item['Name']}}
+		{% endfor %}
+	</table>
+</div>
+{% endif %}
+{% endblock %}

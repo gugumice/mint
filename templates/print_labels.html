@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block content %}
+	<h3>{{ sku_code }}, {{ name }}</h3>
+	<h4>{{ pict }}, EAN: {{bar}}, Packing: {{pack}}, ATTN: {{attn_type}}-{{("Normal","Fragile")[attn_type==2]}}</h4>
+
+        <img src="{{ url_for('static', filename='img/mint/'+pict) }}">
+		
+	<div class="form-group">
+
+	<form class="form-horizontal" role="form" action="" method="post">
+		<label>{{ form.NumInvoice.label }}<input name="{{ form.NumInvoice.name }}" size="10" /></label>
+        	<label>{{ form.NumCopies.label }}<input name="{{form.NumCopies.name}}" size="3" value="1" /></label>
+		<label>{{ form.BoolPrintAttn.label }} {{form.BoolPrintAttn}}</label>
+		<br>
+		
+		<button type="submit" class="btn btn-success">Drukāt</button>
+	</form>
+	</div>
+
+{% endblock %}
